@@ -37,7 +37,7 @@ object NetworkModule {
         gsonConverterFactory: GsonConverterFactory
     ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://api.collectapi.com")
+            .baseUrl("https://api.collectapi.com/corona/coronaNews/")
             .client(okHttpClient)
             .addConverterFactory(gsonConverterFactory)
             .build()
