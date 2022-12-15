@@ -36,19 +36,27 @@ class CoronaNewsViewModel@Inject constructor(private val repository: Repository,
     }
 
 
+    // offline caching fun
+    private fun offlineCacheCartoons(coronaNews: CoronaNews) {
+        val newsEntity = NewsEntity(coronaNews)
+        insertNews(newsEntity)
+    }
 
 
 
-
-
-
-      //              ------------ for retrofit----------
+    //              ------------ for retrofit----------
 
            fun requestApiData(){
                job= CoroutineScope(Dispatchers.IO).launch {
                    val response=repository.remote.getAllNews()
                    if(response.isSuccessful){
                        coronaNewsList.postValue(response.body())
+                        /*
+                       val news = newsList.value
+                       if(news != null) {
+                           offlineCacheCartoons(news)
+                       }
+                           */
                    }else{
                        Log.d("viewmodel","data not found")
                    }
