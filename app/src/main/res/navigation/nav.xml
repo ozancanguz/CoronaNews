@@ -22,5 +22,8 @@
         <action
             android:id="@+id/action_detailsFragment_to_newsFragment"
             app:destination="@id/newsFragment" />
+        <argument
+            android:name="currentNews"
+            app:argType="com.ozancanguz.coronanews.data.model.Result" />
     </fragment>
 </navigation>

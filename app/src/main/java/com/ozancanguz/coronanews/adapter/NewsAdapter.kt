@@ -3,10 +3,12 @@ package com.ozancanguz.coronanews.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.ozancanguz.coronanews.R
 import com.ozancanguz.coronanews.data.model.CoronaNews
 import com.ozancanguz.coronanews.data.model.Result
+import com.ozancanguz.coronanews.ui.fragments.news.NewsFragmentDirections
 import com.ozancanguz.coronanews.util.Utils.Companion.loadImage
 import kotlinx.android.synthetic.main.row_layout.view.*
 
@@ -38,6 +40,11 @@ class NewsAdapter:RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
         // with glide
         holder.itemView.news_img.loadImage(currentNews.image)
+
+        holder.itemView.setOnClickListener {
+            val directon=NewsFragmentDirections.actionNewsFragmentToDetailsFragment(currentNews)
+            holder.itemView.findNavController().navigate(directon)
+        }
 
 
     }
