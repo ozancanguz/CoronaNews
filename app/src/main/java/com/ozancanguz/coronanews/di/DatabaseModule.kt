@@ -2,7 +2,7 @@ package com.ozancanguz.coronanews.di
 
 import android.content.Context
 import androidx.room.Room
-import com.ozancanguz.coronanews.data.db.NewsDatabase
+import com.ozancanguz.coronanews.data.db.news.NewsDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

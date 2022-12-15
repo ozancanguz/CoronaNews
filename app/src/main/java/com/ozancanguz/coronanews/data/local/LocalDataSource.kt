@@ -1,7 +1,7 @@
 package com.ozancanguz.coronanews.data.local
 
-import com.ozancanguz.coronanews.data.db.NewsDao
-import com.ozancanguz.coronanews.data.db.NewsEntity
+import com.ozancanguz.coronanews.data.db.news.NewsDao
+import com.ozancanguz.coronanews.data.db.news.NewsEntity
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

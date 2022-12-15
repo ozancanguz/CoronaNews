@@ -4,7 +4,7 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
 import com.ozancanguz.coronanews.data.Repository
-import com.ozancanguz.coronanews.data.db.NewsEntity
+import com.ozancanguz.coronanews.data.db.news.NewsEntity
 import com.ozancanguz.coronanews.data.model.CoronaNews
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope

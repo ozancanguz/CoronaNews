@@ -1,4 +1,4 @@
-package com.ozancanguz.coronanews.data.db
+package com.ozancanguz.coronanews.data.db.news
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

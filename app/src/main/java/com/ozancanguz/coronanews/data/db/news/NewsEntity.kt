@@ -1,4 +1,4 @@
-package com.ozancanguz.coronanews.data.db
+package com.ozancanguz.coronanews.data.db.news
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
