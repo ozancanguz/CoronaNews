@@ -51,12 +51,10 @@ class CoronaNewsViewModel@Inject constructor(private val repository: Repository,
                    val response=repository.remote.getAllNews()
                    if(response.isSuccessful){
                        coronaNewsList.postValue(response.body())
-                        /*
-                       val news = newsList.value
-                       if(news != null) {
-                           offlineCacheCartoons(news)
-                       }
-                           */
+
+                        val coronanews=coronaNewsList.value!!
+                        offlineCacheCartoons(coronanews)
+
                    }else{
                        Log.d("viewmodel","data not found")
                    }

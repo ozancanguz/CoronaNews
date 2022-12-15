@@ -8,13 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ozancanguz.coronanews.R
 import com.ozancanguz.coronanews.adapter.NewsAdapter
 import com.ozancanguz.coronanews.databinding.FragmentNewsBinding
+import com.ozancanguz.coronanews.util.observeOnce
 import com.ozancanguz.coronanews.viewmodels.CoronaNewsViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class NewsFragment : Fragment() {
@@ -34,7 +37,10 @@ class NewsFragment : Fragment() {
 
         setupRv()
 
-        observeLiveData()
+        // instead of observelive data we call list from db
+       // observeLiveData()
+
+        listFromDatabase()
         return view
 
     }
@@ -44,6 +50,24 @@ class NewsFragment : Fragment() {
         binding.recyclerView.adapter=newsAdapter
     }
 
+    private fun listFromDatabase(){
+
+        lifecycleScope.launch {
+               coronaNewsViewModel.newsList.observeOnce(viewLifecycleOwner, Observer { database ->
+                  Log.d("coronaviewmodel","database called")
+                   if(database.isNotEmpty()){
+                        newsAdapter.setData(database[0].coronaNews)
+                   }
+                   else{
+                       Log.d("coronaviewmodel","api called")
+                       observeLiveData()
+                   }
+
+               })
+        }
+    }
+
+
     private fun observeLiveData() {
         coronaNewsViewModel.requestApiData()
         coronaNewsViewModel.coronaNewsList.observe(viewLifecycleOwner, Observer { news ->
@@ -52,6 +76,18 @@ class NewsFragment : Fragment() {
 
         })
     }
+
+    private fun loadDataFromCache() {
+        lifecycleScope.launch {
+            coronaNewsViewModel.newsList.observe(viewLifecycleOwner) { database ->
+                if (database.isNotEmpty()) {
+                    newsAdapter.setData(database[0].coronaNews)
+                }
+            }
+        }
+    }
+
+
 
 
 }
