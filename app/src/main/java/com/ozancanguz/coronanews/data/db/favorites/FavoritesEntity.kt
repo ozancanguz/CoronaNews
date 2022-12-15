@@ -8,7 +8,7 @@ import com.ozancanguz.coronanews.data.model.Result
 @Entity(tableName = "favorites_table")
 class FavoritesEntity(
     @PrimaryKey(autoGenerate =true)
-    var id:Int=0,
+    var id:Int,
     var result:Result
 
 ) {
