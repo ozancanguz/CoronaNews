@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ozancanguz.coronanews.R
 import com.ozancanguz.coronanews.data.model.CoronaNews
 import com.ozancanguz.coronanews.data.model.Result
+import com.ozancanguz.coronanews.util.Utils.Companion.loadImage
 import kotlinx.android.synthetic.main.row_layout.view.*
 
 class NewsAdapter:RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
@@ -34,6 +35,9 @@ class NewsAdapter:RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
         holder.itemView.news_name.text=currentNews.name
         holder.itemView.news_date.text=currentNews.date
+
+        // with glide
+        holder.itemView.news_img.loadImage(currentNews.image)
 
 
     }
