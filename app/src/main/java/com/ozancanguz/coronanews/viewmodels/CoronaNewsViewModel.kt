@@ -2,9 +2,9 @@ package com.ozancanguz.coronanews.viewmodels
 
 import android.app.Application
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.*
 import com.ozancanguz.coronanews.data.Repository
+import com.ozancanguz.coronanews.data.db.NewsEntity
 import com.ozancanguz.coronanews.data.model.CoronaNews
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -17,9 +17,32 @@ import javax.inject.Inject
 class CoronaNewsViewModel@Inject constructor(private val repository: Repository, application: Application)
     :AndroidViewModel(application){
 
+
+    //    ------for retrofit-----------
         var coronaNewsList=MutableLiveData<CoronaNews>()
          var job: Job?=null
 
+
+    //                 -------for room-------
+
+    var newsList:LiveData<List<NewsEntity>> = repository.local.listNews().asLiveData()
+
+
+    fun insertNews(newsEntity: NewsEntity){
+        viewModelScope.launch(Dispatchers.IO){
+            repository.local.insertNews(newsEntity)
+        }
+
+    }
+
+
+
+
+
+
+
+
+      //              ------------ for retrofit----------
 
            fun requestApiData(){
                job= CoroutineScope(Dispatchers.IO).launch {
