@@ -9,7 +9,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.ozancanguz.coronanews.R
+import com.ozancanguz.coronanews.adapter.NewsAdapter
 import com.ozancanguz.coronanews.databinding.FragmentNewsBinding
 import com.ozancanguz.coronanews.viewmodels.CoronaNewsViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,6 +23,8 @@ class NewsFragment : Fragment() {
     private val binding get() = _binding!!
     private val coronaNewsViewModel:CoronaNewsViewModel by viewModels()
 
+    private var newsAdapter=NewsAdapter()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,16 +32,24 @@ class NewsFragment : Fragment() {
         _binding = FragmentNewsBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        setupRv()
 
         observeLiveData()
         return view
 
     }
 
+    private fun setupRv() {
+        binding.recyclerView.layoutManager=LinearLayoutManager(requireContext())
+        binding.recyclerView.adapter=newsAdapter
+    }
+
     private fun observeLiveData() {
         coronaNewsViewModel.requestApiData()
-        coronaNewsViewModel.coronaNewsList.observe(viewLifecycleOwner, Observer {
-            Log.d("newsFragment", " $it")
+        coronaNewsViewModel.coronaNewsList.observe(viewLifecycleOwner, Observer { news ->
+
+            newsAdapter.setData(news)
+
         })
     }
 
