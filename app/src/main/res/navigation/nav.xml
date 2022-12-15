@@ -8,16 +8,19 @@
     <fragment
         android:id="@+id/newsFragment"
         android:name="com.ozancanguz.coronanews.ui.fragments.news.NewsFragment"
-        android:label="fragment_news"
+        android:label="News"
         tools:layout="@layout/fragment_news" >
         <action
             android:id="@+id/action_newsFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
+        <action
+            android:id="@+id/action_newsFragment_to_favoriteFragment"
+            app:destination="@id/favoriteFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.ozancanguz.coronanews.ui.fragments.detail.DetailsFragment"
-        android:label="fragment_details"
+        android:label="Details"
         tools:layout="@layout/fragment_details" >
         <action
             android:id="@+id/action_detailsFragment_to_newsFragment"
@@ -25,5 +28,14 @@
         <argument
             android:name="currentNews"
             app:argType="com.ozancanguz.coronanews.data.model.Result" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.ozancanguz.coronanews.ui.fragments.favorite.FavoriteFragment"
+        android:label="Favorites"
+        tools:layout="@layout/fragment_favorite" >
+        <action
+            android:id="@+id/action_favoriteFragment_to_newsFragment"
+            app:destination="@id/newsFragment" />
     </fragment>
 </navigation>

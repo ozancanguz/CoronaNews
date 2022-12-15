@@ -9,9 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.ozancanguz.coronanews.R
 import com.ozancanguz.coronanews.adapter.NewsAdapter
 import com.ozancanguz.coronanews.databinding.FragmentNewsBinding
 import com.ozancanguz.coronanews.util.observeOnce
