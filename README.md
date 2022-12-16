@@ -22,3 +22,7 @@ local database.
 **Arhictecture:**
 
 - MVVM
+                                   ----HERE IS THE DEMO OF MY PROJECT----
+
+![coronaNews](https://user-images.githubusercontent.com/64928807/208116871-b1407624-4a74-4a11-a3cb-71d209a62a5b.gif)
+
