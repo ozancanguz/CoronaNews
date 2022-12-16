@@ -1,11 +1,13 @@
 package com.ozancanguz.coronanews.ui.fragments.detail
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
 import com.ozancanguz.coronanews.R
@@ -69,10 +71,6 @@ class DetailsFragment : Fragment() {
     private fun changeMenuItemColor(item: MenuItem, color: Int) {
         item.icon?.setTint(ContextCompat.getColor(requireContext(),color))
     }
-
-
-
-
 
 
     private fun updateData() {
