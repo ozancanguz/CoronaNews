@@ -1,10 +1,8 @@
 package com.ozancanguz.coronanews.ui.fragments.detail
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.ozancanguz.coronanews.R
 import com.ozancanguz.coronanews.databinding.FragmentDetailsBinding
@@ -24,11 +22,26 @@ class DetailsFragment : Fragment() {
         _binding = FragmentDetailsBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        setHasOptionsMenu(true)
+
 
         updateData()
 
+
+
+
+
         return view
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.save_to_fav,menu)
+    }
+
+
+
+
 
     private fun updateData() {
         binding.detailsDescriptionTv.text=args.currentNews.description

@@ -66,8 +66,8 @@ class CoronaNewsViewModel@Inject constructor(private val repository: Repository,
                    if(response.isSuccessful){
                        coronaNewsList.postValue(response.body())
 
-                        val coronanews=coronaNewsList.value!!
-                        offlineCacheCartoons(coronanews)
+                    //    val coronanews=coronaNewsList.value!!
+                    //    offlineCacheCartoons(coronanews)
 
                    }else{
                        Log.d("viewmodel","data not found")
