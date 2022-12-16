@@ -67,7 +67,7 @@ class NewsFragment : Fragment() {
 
 
     private fun observeLiveData() {
-        coronaNewsViewModel.requestApiData()
+        coronaNewsViewModel.requestApiDATA()
         coronaNewsViewModel.coronaNewsList.observe(viewLifecycleOwner, Observer { news ->
 
             newsAdapter.setData(news)

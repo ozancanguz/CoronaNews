@@ -2,9 +2,12 @@ package com.ozancanguz.coronanews.ui.fragments.detail
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.snackbar.Snackbar
 import com.ozancanguz.coronanews.R
 import com.ozancanguz.coronanews.data.db.favorites.FavoritesEntity
 import com.ozancanguz.coronanews.databinding.FragmentDetailsBinding
@@ -59,7 +62,14 @@ class DetailsFragment : Fragment() {
     private fun saveToFavorites(item: MenuItem){
            var favoritesEntity=FavoritesEntity(0,args.currentNews)
          mainViewModel.insertFavoriteNews(favoritesEntity)
+        changeMenuItemColor(item,R.color.yellow)
+       Toast.makeText(requireContext(),"Fav news saved",Toast.LENGTH_LONG).show()
     }
+
+    private fun changeMenuItemColor(item: MenuItem, color: Int) {
+        item.icon?.setTint(ContextCompat.getColor(requireContext(),color))
+    }
+
 
 
 
