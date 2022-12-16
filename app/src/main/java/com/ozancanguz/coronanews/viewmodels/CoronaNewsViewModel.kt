@@ -47,6 +47,20 @@ class CoronaNewsViewModel@Inject constructor(private val repository: Repository,
         }
     }
 
+    // delete favorites
+    fun deleteFavorites(favoritesEntity: FavoritesEntity){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.local.deleteFavorites(favoritesEntity)
+        }
+    }
+
+    // delete all favorites
+    fun deleteAllFavorites(){
+        viewModelScope.launch (Dispatchers.IO){
+            repository.local.deleteAllFavorites()
+
+        }
+    }
 
 
 
