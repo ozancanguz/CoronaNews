@@ -2,6 +2,7 @@ package com.ozancanguz.coronanews.ui.fragments.favorite
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -59,6 +60,15 @@ class FavoriteFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.delete_all_menu,menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        if(item.itemId== R.id.deleteAllMenu){
+            mainViewModel.deleteAllFavorites()
+            Toast.makeText(requireContext(),"Favorites deleted",Toast.LENGTH_LONG).show()
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 
