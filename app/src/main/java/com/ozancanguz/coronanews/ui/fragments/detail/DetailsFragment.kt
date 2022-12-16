@@ -3,16 +3,21 @@ package com.ozancanguz.coronanews.ui.fragments.detail
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.ozancanguz.coronanews.R
+import com.ozancanguz.coronanews.data.db.favorites.FavoritesEntity
 import com.ozancanguz.coronanews.databinding.FragmentDetailsBinding
 import com.ozancanguz.coronanews.util.Utils.Companion.loadImage
+import com.ozancanguz.coronanews.viewmodels.CoronaNewsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class DetailsFragment : Fragment() {
     private var _binding: FragmentDetailsBinding? = null
 
     private val args:DetailsFragmentArgs by navArgs()
+    private val mainViewModel:CoronaNewsViewModel by viewModels()
 
     private val binding get() = _binding!!
     override fun onCreateView(
@@ -34,9 +39,26 @@ class DetailsFragment : Fragment() {
         return view
     }
 
+
+    // create menu
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.save_to_fav,menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            // save to favorites
+        }else if(item.itemId ==R.id.savetofavmenu){
+            saveToFavorites(item)
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+
+    private fun saveToFavorites(item: MenuItem){
+           var favoritesEntity=FavoritesEntity(0,args.currentNews)
+         mainViewModel.insertFavoriteNews(favoritesEntity)
     }
 
 
