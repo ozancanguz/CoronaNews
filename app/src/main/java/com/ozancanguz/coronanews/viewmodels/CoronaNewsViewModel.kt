@@ -4,6 +4,7 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
 import com.ozancanguz.coronanews.data.Repository
+import com.ozancanguz.coronanews.data.db.favorites.FavoritesEntity
 import com.ozancanguz.coronanews.data.db.news.NewsEntity
 import com.ozancanguz.coronanews.data.model.CoronaNews
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,6 +28,10 @@ class CoronaNewsViewModel@Inject constructor(private val repository: Repository,
 
     var newsList:LiveData<List<NewsEntity>> = repository.local.listNews().asLiveData()
 
+    var favoritesNews:LiveData<List<FavoritesEntity>> =repository.local.readFavoriteNews().asLiveData()
+
+
+    // insert news to db
 
     fun insertNews(newsEntity: NewsEntity){
         viewModelScope.launch(Dispatchers.IO){
@@ -34,6 +39,15 @@ class CoronaNewsViewModel@Inject constructor(private val repository: Repository,
         }
 
     }
+
+    // insert favorites news to db
+    fun insertFavoriteNews(favoritesEntity: FavoritesEntity){
+        viewModelScope.launch ((Dispatchers.IO)){
+            repository.local.insertFavorites(favoritesEntity)
+        }
+    }
+
+
 
 
     // offline caching fun
