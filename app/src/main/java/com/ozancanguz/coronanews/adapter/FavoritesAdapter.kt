@@ -3,10 +3,12 @@ package com.ozancanguz.coronanews.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.ozancanguz.coronanews.R
 import com.ozancanguz.coronanews.data.db.favorites.FavoritesEntity
 import com.ozancanguz.coronanews.ui.fragments.detail.DetailsFragmentDirections
+import com.ozancanguz.coronanews.ui.fragments.favorite.FavoriteFragmentDirections
 import com.ozancanguz.coronanews.util.Utils.Companion.loadImage
 import kotlinx.android.synthetic.main.favorite_news_row_layout.view.*
 
@@ -36,6 +38,10 @@ class FavoritesAdapter:RecyclerView.Adapter<FavoritesAdapter.FavViewHolder>() {
         holder.itemView.favorites_name.text=currentFavItem.result.name
         holder.itemView.favorites_date.text=currentFavItem.result.date
 
+        holder.itemView.setOnClickListener {
+            val action=FavoriteFragmentDirections.actionFavoriteFragmentToDetailsFragment(currentFavItem.result)
+            holder.itemView.findNavController().navigate(action)
+        }
 
     }
 

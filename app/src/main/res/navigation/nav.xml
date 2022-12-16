@@ -28,6 +28,9 @@
         <argument
             android:name="currentNews"
             app:argType="com.ozancanguz.coronanews.data.model.Result" />
+        <action
+            android:id="@+id/action_detailsFragment_to_favoriteFragment"
+            app:destination="@id/favoriteFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
@@ -37,5 +40,8 @@
         <action
             android:id="@+id/action_favoriteFragment_to_newsFragment"
             app:destination="@id/newsFragment" />
+        <action
+            android:id="@+id/action_favoriteFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
     </fragment>
 </navigation>
